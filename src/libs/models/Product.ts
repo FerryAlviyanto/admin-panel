@@ -17,7 +17,7 @@ const productSchema = new Schema({
     type: String,
     require: true,
   },
-  prrice: {
+  price: {
     type: String,
     require: true,
   },

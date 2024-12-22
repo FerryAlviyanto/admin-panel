@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IProduct {
   id: string;
-  tittle: string;
+  title: string;
   img: string;
   price: number;
   quantity: number;

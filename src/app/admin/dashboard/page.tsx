@@ -4,6 +4,7 @@ import ProductRow from "@/components/admin-panel/ProductRow";
 import { setLoading } from "@/redux/features/loadingSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import axios from "axios";
+import { error } from "console";
 import React, { useEffect, useState } from "react";
 
 export interface IProduct {
@@ -12,7 +13,7 @@ export interface IProduct {
   fileKey: string;
   name: string;
   price: string;
-  catagory: string;
+  category: string;
 }
 
 const Dashboard = () => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
     axios
       .get("/api/get_products")
       .then((res) => setProducts(res.data))
-      .catch((err) => console.log(err))
+      .catch((error) => console.log(error))
       .finally(() => dispatch(setLoading(false)));
   }, [updateTable]);
 
@@ -37,7 +38,7 @@ const Dashboard = () => {
       <div className="bg-white h-[calc(100vh-96px)] rounded-lg p-4">
         <h2 className="text-3xl">All Products</h2>
 
-        <div className="mt-4 h-[calc(100vh=180px)] overflow-y-auto">
+        <div className="mt-4 h-[calc(100vh-180px)] overflow-y-auto">
           <table className="w-full">
             <thead>
               <tr className="text-gray-500 border-t border-[#ececec]">

@@ -1,10 +1,10 @@
 import Product from "@/libs/models/Product";
-import { connectMonggoDB } from "@/libs/MonggoConnect";
+import { connectMongoDB } from "@/libs/MongoConnect";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectMonggoDB();
+    await connectMongoDB();
 
     const data = await Product.find();
 

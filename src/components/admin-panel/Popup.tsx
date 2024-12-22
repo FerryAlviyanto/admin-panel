@@ -2,6 +2,7 @@ import { setLoading } from "@/redux/features/loadingSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { makeToast } from "@/utils/helper";
 import axios from "axios";
+import { error } from "console";
 import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
@@ -16,7 +17,7 @@ const Popup = ({ setOpenPopup, setUpdateTable }: PropsType) => {
 
   const [inputData, setInputData] = useState({
     name: productData.name,
-    category: productData.catagory,
+    category: productData.category,
     price: productData.price,
   });
 
@@ -27,10 +28,10 @@ const Popup = ({ setOpenPopup, setUpdateTable }: PropsType) => {
     axios
       .put(`/api/edit_product/${productData._id}`, inputData)
       .then((res) => {
-        makeToast("Product Updated Successfully!");
+        makeToast("Product Update Successfully!");
         setUpdateTable((prevState) => !prevState);
       })
-      .catch((err) => console.log(err))
+      .catch((error) => console.log(error))
       .finally(() => {
         dispatch(setLoading(false));
         setOpenPopup(false);
@@ -45,7 +46,7 @@ const Popup = ({ setOpenPopup, setUpdateTable }: PropsType) => {
           onClick={() => setOpenPopup(false)}
         />
 
-        <h2 className="text-2xl -mt-3">Edit Product</h2>
+        <h2 className="text-2x1 -mt-3">Edit Product</h2>
 
         <form className="mt-6 w-fit space-y-4 mx-auto" onSubmit={handleSubmit}>
           <input
@@ -70,7 +71,7 @@ const Popup = ({ setOpenPopup, setUpdateTable }: PropsType) => {
           />
           <input
             className="border block border-gray-500 outline-none px-4 py-2 rounded-lg w-fit"
-            type="number"
+            type="text"
             placeholder="Price"
             value={inputData.price}
             onChange={(e) =>
@@ -79,10 +80,7 @@ const Popup = ({ setOpenPopup, setUpdateTable }: PropsType) => {
             required
           />
           <div className="flex justify-end">
-            <button
-              type="submit"
-              className="bg-accent block text-white px-8 py-2 rounded-lg self-center"
-            >
+            <button className="bg-accent block text-white px-8 py-2 rounded-lg self-center">
               Save
             </button>
           </div>

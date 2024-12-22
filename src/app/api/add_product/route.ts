@@ -1,5 +1,5 @@
-import { connectMonggoDB } from "@/libs/MonggoConnect";
 import Product from "@/libs/models/Product";
+import { connectMongoDB } from "@/libs/MongoConnect";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { imgSrc, fileKey, name, category, price } = body;
 
-    await connectMonggoDB();
+    await connectMongoDB();
 
     const data = await Product.create({
       imgSrc,
@@ -17,12 +17,12 @@ export async function POST(request: NextRequest) {
       price,
     });
 
-    return NextResponse.json({ msg: "Product added successfully", data });
+    return NextResponse.json({ msg: "Product added Successfully", data });
   } catch (error) {
     return NextResponse.json(
       {
         error,
-        msg: "Something went wrong",
+        msg: "Something Went Wrong",
       },
       { status: 400 }
     );
